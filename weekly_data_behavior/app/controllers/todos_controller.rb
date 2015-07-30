@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :edit, :update, :destroy]
+  before_action :set_todo, only: [:show, :edit, :update, :destroy, :complete]
 
   # GET /todos
   # GET /todos.json
@@ -60,6 +60,8 @@ class TodosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def complete; end
 
   private
     # Use callbacks to share common setup or constraints between actions.
