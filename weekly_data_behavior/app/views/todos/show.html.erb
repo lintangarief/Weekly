@@ -5,10 +5,5 @@
   <%= @todo.description %>
 </p>
 
-<p>
-  <strong>Completed at:</strong>
-  <%= @todo.completed_at %>
-</p>
-
 <%= link_to 'Edit', edit_todo_path(@todo) %> |
 <%= link_to 'Back', todos_path %>

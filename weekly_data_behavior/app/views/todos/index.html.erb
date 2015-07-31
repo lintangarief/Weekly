@@ -1,27 +1,22 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Listing Todos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @todos.each do |todo| %>
-      <tr>
-        <td><%= todo.description %></td>
-        <td><%= link_to 'Show', todo %></td>
-        <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div data-behavior="todo-list">
+  <ul>
+    <% @todos.each do |todo|%>
+      <li data-behavior="todo" data-id="<%= todo.id %>">
+        <%= check_box_tag :complete, 1, todo.completed, data: { behavior: "todo-toggle" } %>
+        <span data-behavior="todo-description">
+          <% if todo.completed %>
+            <del><%= todo.description %></del>
+          <% else %>
+            <%= todo.description %>
+          <% end %>
+        </span>
+      </li>
     <% end %>
-  </tbody>
-</table>
+  </ul>
+</div>
 
-<br>
+<br/>
 
 <%= link_to 'New Todo', new_todo_path %>

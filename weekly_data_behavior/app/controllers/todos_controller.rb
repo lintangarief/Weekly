@@ -61,7 +61,11 @@ class TodosController < ApplicationController
     end
   end
 
-  def complete; end
+  def complete
+    completed_at = @todo.completed ? nil : Time.zone.now
+    @todo.update_attributes(completed_at: completed_at)
+    render json: { id: @todo.id, completed: @todo.completed, description: @todo.description }
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
